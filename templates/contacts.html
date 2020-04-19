@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}How you can contact me{% endblock %}
+
+{% block content %}
+    <h3>How you can contact me</h3><br>
+    Telegram: <a href="https://t.me/Pug_of_the_Apocalypse" target="blank">Contact via Telegram</a><br>
+    email: <a href="email@email.com" target="_blank">email@email.com</a><br>
+    phone: +7 987 654 32 10
+    <hr>
+
+    <h3>In case you want to contact me, please leave your details below</h3><br>
+
+     <form method="post" action="/submit">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Full Name" size="20"/>
+        <br /><br />
+        <textarea name="text" placeholder="Please leave your message and/or contact details here" rows="10" cols="75"></textarea>
+        <br /><br />
+        <input type="submit" value="Publish" />
+        <hr>
+    </form>
+	<h2>Received messages:</h2>
+		<ul>
+        {% for message in messages %}
+			<li>{{ message.text|safe }}<br>От: <i>{{ message.name|safe }}</i></li>
+		{% empty %}
+			<li>No messages here yet</li>
+        {% endfor %}
+		</ul>
+{% endblock %}
