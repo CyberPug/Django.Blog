@@ -12,3 +12,8 @@ local*
 *.bat
 *.ini
 *.bkp
+.gitignore
+*.retry
+.idea
+.vscode
+.swp
